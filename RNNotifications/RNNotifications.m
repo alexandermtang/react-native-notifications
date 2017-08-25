@@ -208,7 +208,7 @@ RCT_EXPORT_MODULE()
     
     UIApplicationState state = [UIApplication sharedApplication].applicationState;
 
-    if ([RNNotificationsBridgeQueue sharedInstance].jsIsReady == YES) {
+    // if ([RNNotificationsBridgeQueue sharedInstance].jsIsReady == YES) {
         // JS thread is ready, push the notification to the bridge
 
         if (state == UIApplicationStateActive) {
@@ -221,10 +221,10 @@ RCT_EXPORT_MODULE()
             // Notification received background
             [self didReceiveNotificationOnBackgroundState:data];
         }
-    } else {
-        // JS thread is not ready - store it in the native notifications queue
-        [[RNNotificationsBridgeQueue sharedInstance] postNotification:data];
-    }
+    // } else {
+    //     // JS thread is not ready - store it in the native notifications queue
+    //     [[RNNotificationsBridgeQueue sharedInstance] postNotification:data];
+    // }
 }
 
 + (void)didReceiveLocalNotification:(UILocalNotification *)notification
@@ -392,11 +392,11 @@ RCT_EXPORT_MODULE()
     // Emit event to the queue (in order to store the completion handler). if JS thread is ready, post it also to the notification center (to the bridge).
     [[RNNotificationsBridgeQueue sharedInstance] postAction:info withCompletionKey:completionKey andCompletionHandler:completionHandler];
 
-    if ([RNNotificationsBridgeQueue sharedInstance].jsIsReady == YES) {
+    // if ([RNNotificationsBridgeQueue sharedInstance].jsIsReady == YES) {
         [[NSNotificationCenter defaultCenter] postNotificationName:RNNotificationActionTriggered
                                                             object:self
                                                           userInfo:info];
-    }
+    // }
 }
 
 + (void)registerPushKit
