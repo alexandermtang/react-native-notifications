@@ -24,7 +24,7 @@ NSMutableDictionary* fetchCompletionHandlers;
     notificationsQueue = [NSMutableArray new];
     actionCompletionHandlers = [NSMutableDictionary new];
     fetchCompletionHandlers = [NSMutableDictionary new];
-    self.jsIsReady = NO;
+    self.jsIsReady = YES;
 
     return self;
 }
